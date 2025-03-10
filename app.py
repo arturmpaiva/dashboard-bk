@@ -87,7 +87,7 @@ with tab1:
     st.header("BK REVIEWS")
     st.markdown(
         """
-        <iframe title="BK REVIEWS" width="950" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=2390cc43-7f08-47e1-8cca-f6fd08b625d6&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>
+        <iframe title="BK REVIEWS" width="950" height="541.25" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9 frameborder="0" allowFullScreen="true"></iframe>
         """,
         unsafe_allow_html=True,
     )
@@ -96,7 +96,7 @@ with tab2:
     st.header("BK ARTS")
     st.markdown(
         """
-        <iframe title="BK ARTS v3" width="950" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=ad96f27f-4afd-4964-8687-3bca4c6c185e&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>
+        <iframe title="BK ARTS v3" width="950" height="541.25" src="https://app.powerbi.com/view?r=eyJrIjoiYjA0ZjEyZTItYzIxOS00MjY4LTljYTEtYTUwMjMxYTAxMmFhIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
         """,
         unsafe_allow_html=True,)
 
