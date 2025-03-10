@@ -1,24 +1,104 @@
 import streamlit as st
+import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from auth import authenticate_google_sheets, access_google_sheet
 
+st.set_page_config(layout="wide")
+st.markdown(
+    """
+    <style>
+        /* Forçar o tamanho e a cor da barra lateral */
+        [data-testid="stSidebar"] {
+            background-color: #191a1f !important;
+            width: 70px !important; /* Reduzir largura */
+        }
+
+        /* Ajustar o texto dentro da barra lateral */
+        [data-testid="stSidebar"] * {
+            color: white;
+        }
+
+        /* Redimensionar a imagem na barra lateral */
+        [data-testid="stImage"] img {
+            width: 50px; /* Reduzir tamanho da imagem */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Centralizar e ajustar o header */
+        .header-container {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Ajustar as tabs para não sobrepor */
+        div[data-testid="stTabs"] > div {
+            margin-top: -10px;
+        }
+
+        /* Estilizar os botões na barra lateral */
+        .sidebar-button {
+            display: block;
+            text-align: center;
+            background-color: white;
+            color: black !important;
+            padding: 10px 15px;
+            margin: 10px auto;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .sidebar-button:hover {
+            background-color: #f0f0f0;
+            color: black !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
+st.sidebar.image("logobk.jpg", caption="", use_container_width=False)
+
+
 st.title('Dashboard BK Financeiro')
+if st.button('Atualizar planilha reviews'):
+    
+    webhook_url = "https://n8n.fxautomate.top/webhook/dashboard"
+    
+    # Aqui você pode enviar dados para o flow do n8n (opcional)
+    payload = {"message": "Flow acionado com sucesso!"}
+    
+    try:
+        response = requests.post(webhook_url, json=payload)
+        if response.status_code == 200:
+            st.success("Atualizando dados, por favor aguarde...")
+        else:
+            st.error(f"Erro ao atualizar")
+    except Exception as e:
+        st.error(f"Erro ao chamar o Webhook: {str(e)}")
 
-opcao = st.radio('Dashboards', ('BK REVIEWS', 'BK ARTS'))
+tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
+with tab1:
+    st.header("BK REVIEWS")
+    st.markdown(
+        """
+        <iframe title="BK REVIEWS" width="950" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=2390cc43-7f08-47e1-8cca-f6fd08b625d6&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>
+        """,
+        unsafe_allow_html=True,
+    )
 
-# Se a opção for "Dashboard 1"
-if opcao == 'BK REVIEWS':
-    st.markdown('<h3 style="text-align: center;">BK Reviews</h3>', unsafe_allow_html=True)
-    dashboard_1_url = "https://app.powerbi.com/reportEmbed?reportId=<SEU_REPORT_ID_1>&groupId=<SEU_GROUP_ID>&autoAuth=true&ctid=<SEU_CID>"
-    st.markdown(f'<iframe title="BK REVIEWS" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=2390cc43-7f08-47e1-8cca-f6fd08b625d6&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
-
-elif opcao == 'BK ARTS':
-    st.markdown('<h3 style="text-align: center;">BK Arts</h3>', unsafe_allow_html=True)
-    dashboard_2_url = "https://app.powerbi.com/reportEmbed?reportId=<SEU_REPORT_ID_2>&groupId=<SEU_GROUP_ID>&autoAuth=true&ctid=<SEU_CID>"
-    st.markdown(f'<iframe title="BK ARTS v3" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=ad96f27f-4afd-4964-8687-3bca4c6c185e&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
+with tab2:
+    st.header("BK Ads")
+    st.markdown(
+        """
+        <iframe title="BK ARTS v3" width="950" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=ad96f27f-4afd-4964-8687-3bca4c6c185e&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>
+        """,
+        unsafe_allow_html=True,)
 
 
 planilhas = {
@@ -31,4 +111,4 @@ planilhas = {
 
 for planilha, link in planilhas.items():
     if st.sidebar.button(planilha):
-        st.markdown(f'<a href="{link}" target="_blank">Clique aqui para acessar {planilha}</a>', unsafe_allow_html=True)
+        st.markdown(f'<meta http-equiv="refresh" content="0;url={link}">', unsafe_allow_html=True)
