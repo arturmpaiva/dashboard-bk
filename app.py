@@ -14,11 +14,6 @@ st.markdown(
             width: 70px !important; /* Reduzir largura */
         }
 
-        /* Ajustar o texto dentro da barra lateral */
-        [data-testid="stSidebar"] * {
-            color: white;
-        }
-
         /* Redimensionar a imagem na barra lateral */
         [data-testid="stImage"] img {
             width: 50px; /* Reduzir tamanho da imagem */
@@ -87,7 +82,7 @@ with tab1:
     st.header("BK REVIEWS")
     st.markdown(
         """
-        <iframe title="BK REVIEWS" width="950" height="541.25" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9 frameborder="0" allowFullScreen="true"></iframe>
+        <iframe title="BK REVIEWS" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
         """,
         unsafe_allow_html=True,
     )
