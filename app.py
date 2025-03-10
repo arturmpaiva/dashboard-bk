@@ -61,25 +61,25 @@ st.sidebar.image("logobk.jpg", caption="", use_container_width=False)
 
 
 st.title('Dashboard BK Financeiro')
-if st.button('Atualizar planilha reviews'):
-    
-    webhook_url = "https://n8n.fxautomate.top/webhook/dashboard"
-    
-    # Aqui você pode enviar dados para o flow do n8n (opcional)
-    payload = {"message": "Flow acionado com sucesso!"}
-    
-    try:
-        response = requests.post(webhook_url, json=payload)
-        if response.status_code == 200:
-            st.success("Atualizando dados, por favor aguarde...")
-        else:
-            st.error(f"Erro ao atualizar")
-    except Exception as e:
-        st.error(f"Erro ao chamar o Webhook: {str(e)}")
 
 tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
 with tab1:
     st.header("BK REVIEWS")
+    if st.button('Atualizar planilha reviews'):
+    
+        webhook_url = "https://n8n.fxautomate.top/webhook/dashboard"
+        
+        # Aqui você pode enviar dados para o flow do n8n (opcional)
+        payload = {"message": "Flow acionado com sucesso!"}
+        
+        try:
+            response = requests.post(webhook_url, json=payload)
+            if response.status_code == 200:
+                st.success("Atualizando dados, por favor aguarde...")
+            else:
+                st.error(f"Erro ao atualizar")
+        except Exception as e:
+            st.error(f"Erro ao chamar o Webhook: {str(e)}")
     st.markdown(
         """
         <iframe title="BK REVIEWS" width="950" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
