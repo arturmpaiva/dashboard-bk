@@ -93,7 +93,7 @@ with tab1:
     )
 
 with tab2:
-    st.header("BK Ads")
+    st.header("BK ARTS")
     st.markdown(
         """
         <iframe title="BK ARTS v3" width="950" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=ad96f27f-4afd-4964-8687-3bca4c6c185e&autoAuth=true&ctid=aba8a477-140b-43b8-80d3-f19404ea174c" frameborder="0" allowFullScreen="true"></iframe>
