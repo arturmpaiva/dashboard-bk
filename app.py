@@ -80,8 +80,8 @@ def acionar_webhooks():
     webhook1_url = "https://n8n.fxautomate.top/webhook/dashboard"
     webhook2_url = "https://n8n.fxautomate.top/webhook/faturamento"
     
-    payload_1 = {"message": "Acionando primeiro webhook!"}
-    payload_2 = {"message": "Acionando segundo webhook!"}
+    payload_1 = {"message": "Atualizando planilha, por favor aguarde..."}
+    payload_2 = {"message": "Atualizando planilha, por favor aguarde..."}
     
     try:
         response_1 = requests.post(webhook1_url, json=payload_1)
