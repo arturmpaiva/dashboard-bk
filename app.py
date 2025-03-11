@@ -74,27 +74,32 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 
 st.sidebar.image("logobk.jpg", caption="", use_container_width=False)
 
-
 st.title('Dashboard BK Financeiro')
 
-tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
-with tab1:
-    st.header("BK REVIEWS")
-    if st.button('Atualizar planilha reviews'):
+def acionar_webhooks():
+    webhook1_url = "https://n8n.fxautomate.top/webhook/dashboard"
+    webhook2_url = "https://n8n.fxautomate.top/webhook/faturamento"
     
-        webhook_url = "https://n8n.fxautomate.top/webhook/dashboard"
-        
-        # Aqui você pode enviar dados para o flow do n8n (opcional)
-        payload = {"message": "Flow acionado com sucesso!"}
-        
-        try:
-            response = requests.post(webhook_url, json=payload)
-            if response.status_code == 200:
-                st.success("Atualizando dados, por favor aguarde...")
-            else:
-                st.error(f"Erro ao atualizar")
-        except Exception as e:
-            st.error(f"Erro ao chamar o Webhook: {str(e)}")
+    payload_1 = {"message": "Acionando primeiro webhook!"}
+    payload_2 = {"message": "Acionando segundo webhook!"}
+    
+    try:
+        response_1 = requests.post(webhook1_url, json=payload_1)
+        if response_1.status_code == 200:
+            st.success("Primeiro Webhook acionado com sucesso!")
+        else:
+            st.error(f"Erro ao chamar o primeiro Webhook: {response_1.status_code}")
+    except Exception as e:
+        st.error(f"Erro ao chamar o primeiro Webhook: {str(e)}")
+    
+    try:
+        response_2 = requests.post(webhook2_url, json=payload_2)
+        if response_2.status_code == 200:
+            st.success("Segundo Webhook acionado com sucesso!")
+        else:
+            st.error(f"Erro ao chamar o segundo Webhook: {response_2.status_code}")
+    except Exception as e:
+        st.error(f"Erro ao chamar o segundo Webhook: {str(e)}")
     st.markdown(
         """
         <div class="responsive-iframe">
@@ -103,6 +108,12 @@ with tab1:
         """,
         unsafe_allow_html=True,
     )
+
+tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
+with tab1:
+    st.header("BK REVIEWS")
+    if st.button('Atualizar Planilha Reviews'):
+        acionar_webhooks()
 
 with tab2:
     st.header("BK ARTS")
