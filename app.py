@@ -100,7 +100,14 @@ def acionar_webhooks():
             st.error(f"Erro ao chamar o segundo Webhook: {response_2.status_code}")
     except Exception as e:
         st.error(f"Erro ao chamar o segundo Webhook: {str(e)}")
-    st.markdown(
+    
+
+tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
+with tab1:
+    st.header("BK REVIEWS")
+    if st.button('Atualizar Planilha Reviews'):
+        acionar_webhooks()
+        st.markdown(
         """
         <div class="responsive-iframe">
             <iframe title="BK REVIEWS" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
@@ -108,12 +115,6 @@ def acionar_webhooks():
         """,
         unsafe_allow_html=True,
     )
-
-tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
-with tab1:
-    st.header("BK REVIEWS")
-    if st.button('Atualizar Planilha Reviews'):
-        acionar_webhooks()
 
 with tab2:
     st.header("BK ARTS")
