@@ -8,10 +8,25 @@ st.set_page_config(layout="wide")
 st.markdown(
     """
     <style>
+        .responsive-iframe {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Proporção de 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .responsive-iframe iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
         /* Forçar o tamanho e a cor da barra lateral */
         [data-testid="stSidebar"] {
             background-color: #191a1f !important;
-            width: 70px !important; /* Reduzir largura */
+            width: 20% !important; /* Reduzir largura */
         }
 
         /* Redimensionar a imagem na barra lateral */
@@ -24,7 +39,7 @@ st.markdown(
         /* Centralizar e ajustar o header */
         .header-container {
             text-align: center;
-            font-size: 24px;
+            font-size: 2em;
             margin-bottom: 20px;
         }
 
@@ -82,7 +97,9 @@ with tab1:
             st.error(f"Erro ao chamar o Webhook: {str(e)}")
     st.markdown(
         """
-        <iframe title="BK REVIEWS" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <div class="responsive-iframe">
+            <iframe title="BK REVIEWS" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <\div>
         """,
         unsafe_allow_html=True,
     )
@@ -91,7 +108,9 @@ with tab2:
     st.header("BK ARTS")
     st.markdown(
         """
-        <iframe title="BK ARTS v3" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiYjA0ZjEyZTItYzIxOS00MjY4LTljYTEtYTUwMjMxYTAxMmFhIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <div class="responsive-iframe">
+            <iframe title="BK ARTS v3" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiYjA0ZjEyZTItYzIxOS00MjY4LTljYTEtYTUwMjMxYTAxMmFhIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <\div>
         """,
         unsafe_allow_html=True,)
 
