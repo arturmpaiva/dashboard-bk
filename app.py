@@ -80,13 +80,13 @@ def acionar_webhooks():
     webhook1_url = "https://n8n.fxautomate.top/webhook/dashboard"
     webhook2_url = "https://n8n.fxautomate.top/webhook/faturamento"
     
-    payload_1 = {"message": "Atualizando planilha, por favor aguarde..."}
-    payload_2 = {"message": "Atualizando planilha, por favor aguarde..."}
+    payload_1 = {"message": "Primeiro Webhook acionado com sucesso!"}
+    payload_2 = {"message": "Segundo Webhook acionado com sucesso!"}
     
     try:
         response_1 = requests.post(webhook1_url, json=payload_1)
         if response_1.status_code == 200:
-            st.success("Primeiro Webhook acionado com sucesso!")
+            st.success("Atualizando planilha, por favor aguarde...")
         else:
             st.error(f"Erro ao chamar o primeiro Webhook: {response_1.status_code}")
     except Exception as e:
@@ -95,7 +95,7 @@ def acionar_webhooks():
     try:
         response_2 = requests.post(webhook2_url, json=payload_2)
         if response_2.status_code == 200:
-            st.success("Segundo Webhook acionado com sucesso!")
+            return
         else:
             st.error(f"Erro ao chamar o segundo Webhook: {response_2.status_code}")
     except Exception as e:
