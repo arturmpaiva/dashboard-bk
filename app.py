@@ -77,13 +77,13 @@ st.sidebar.image("logobk.jpg", caption="", use_container_width=False)
 st.title('Dashboard BK Financeiro')
 
 def acionar_webhooks():
-    get_ativos = "http://64.227.1.173:5000/executar"
-    webhook2_url = "https://n8n.fxautomate.top/webhook/faturamento"
+    get_ativos = "https://n8n.fxautomate.top/webhook/kiwify"
+    get_fat = "https://n8n.fxautomate.top/webhook/faturamento"
     
     payload_2 = {"message": "Segundo Webhook acionado com sucesso!"}
     
     try:
-        response = requests.get(get_ativos)
+        response = requests.post(get_ativos)
         if response.status_code == 200:
             st.success("Atualizando planilha, por favor aguarde...")
         else:
@@ -92,7 +92,7 @@ def acionar_webhooks():
         st.error(f"Erro ao atualizar os ativos: {e}")
     
     try:
-        response_2 = requests.post(webhook2_url, json=payload_2)
+        response_2 = requests.post(get_fat, json=payload_2)
         if response_2.status_code == 200:
             return
         else:
