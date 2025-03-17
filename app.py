@@ -2,8 +2,6 @@ import streamlit as st
 import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from auth import authenticate_google_sheets, access_google_sheet
-
 st.set_page_config(layout="wide")
 st.markdown(
     """
@@ -101,30 +99,33 @@ def acionar_webhooks():
         st.error(f"Erro ao rodar o faturamento: {str(e)}")
     
 
-tab1, tab2 = st.tabs(["BK REVIEWS", "BK ARTS"])
+tab1, tab2, tab3 = st.tabs(["BK REVIEWS", "BK ARTS", "BK ADS"])
 with tab1:
     st.header("BK REVIEWS")
     if st.button('Atualizar Planilha Reviews'):
         acionar_webhooks()
     
-    st.markdown(
-    """
-    <div class="responsive-iframe">
-        <iframe title="BK REVIEWS" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
-    <\div>
-    """,
-    unsafe_allow_html=True,
-)
+    st.markdown("""
+        <div class="responsive-iframe">
+            <iframe title="BK REVIEWS" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiZTAwZDBmNjktMWJhMy00YjI2LTliMmMtOGQ3NDcwOGY5MGExIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <\div>
+    """, unsafe_allow_html=True)
 
 with tab2:
     st.header("BK ARTS")
-    st.markdown(
-        """
+    st.markdown("""
         <div class="responsive-iframe">
             <iframe title="BK ARTS v3" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiYjA0ZjEyZTItYzIxOS00MjY4LTljYTEtYTUwMjMxYTAxMmFhIiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
         <\div>
-        """,
-        unsafe_allow_html=True,)
+    """, unsafe_allow_html=True)
+
+with tab3:
+    st.header("BK ADS")
+    st.markdown("""
+        <div class="responsive-iframe">
+            <iframe title="BK ADS v3" width="853" height="540" src="https://app.powerbi.com/view?r=eyJrIjoiMTY2YTVkZmItMTE2Ni00ZDdiLTllMWQtM2UyODMwMGJkZDc2IiwidCI6ImFiYThhNDc3LTE0MGItNDNiOC04MGQzLWYxOTQwNGVhMTc0YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <\div
+    """, unsafe_allow_html=True)
 
 
 planilhas = {
