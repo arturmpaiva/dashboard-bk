@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
 st.set_page_config(layout="wide")
 st.markdown(
     """
@@ -75,7 +76,7 @@ st.sidebar.image("logobk.jpg", caption="", use_container_width=False)
 st.title('Dashboard BK Financeiro')
 
 def acionar_webhooks():
-    get_ativos = "https://n8n.fxautomate.top/webhook/kiwify"
+    get_ativos = "https://n8n.fxautomate.top/webhook/ativos"
     get_fat = "https://n8n.fxautomate.top/webhook/faturamento"
     
     payload_2 = {"message": "Segundo Webhook acionado com sucesso!"}
